@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Hamza Lekhbioui */
+
+@layer base {
+  :root {
+    /* Navy Blue & Teal Professional Palette */
+    --background: 0 0% 98%;
+    --foreground: 220 70% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 70% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 70% 15%;
+
+    /* Deep Navy Primary */
+    --primary: 220 65% 20%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Vibrant Teal Accent */
+    --accent: 174 72% 56%;
+    --accent-foreground: 220 65% 20%;
+
+    /* Subtle Gray Secondary */
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 70% 15%;
+
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 15% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 174 72% 56%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --hero-gradient-start: 220 65% 20%;
+    --hero-gradient-end: 174 72% 56%;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08);
+    --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 40px -10px rgb(0 0 0 / 0.15);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 220 70% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 65% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 65% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 174 72% 56%;
+    --primary-foreground: 220 70% 8%;
+
+    --accent: 174 72% 56%;
+    --accent-foreground: 220 70% 8%;
+
+    --secondary: 220 50% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 50% 18%;
+    --muted-foreground: 220 15% 65%;
+
+    --border: 220 50% 18%;
+    --input: 220 50% 18%;
+    --ring: 174 72% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
