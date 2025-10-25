@@ -18,7 +18,7 @@ const Footer = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com/in/hamzalekhbioui"
+              href="https://www.linkedin.com/in/hamza-lekhbioui/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-primary-foreground/10 transition-all hover:scale-110"
@@ -27,7 +27,7 @@ const Footer = () => {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:hamza@example.com"
+              href="mailto:hamza.lekhbioui@gmail.com"
               className="p-2 rounded-full hover:bg-primary-foreground/10 transition-all hover:scale-110"
               aria-label="Email"
             >
@@ -38,8 +38,7 @@ const Footer = () => {
           <div className="text-center">
             <p className="text-sm flex items-center gap-2">
               © {currentYear} Hamza Lekhbioui. Built with
-              <Heart className="w-4 h-4 text-accent inline fill-current" />
-              and dedication.
+              MOLSH777yyyy.
             </p>
             <p className="text-xs text-primary-foreground/60 mt-2">
               All rights reserved.
