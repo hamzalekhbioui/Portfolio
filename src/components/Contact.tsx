@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Send, Phone, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,12 +16,12 @@ const Contact = () => {
   });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    // Netlify Forms handles the submission automatically
+    // Show success message to user
     toast({
       title: "Message Sent!",
       description: "Thank you for reaching out. I'll get back to you soon.",
     });
-    setFormData({ name: "", email: "", message: "" });
   };
 
   const contactInfo = [
@@ -52,49 +52,150 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-heading font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-4"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+    <section id="contact" className="py-20 bg-gradient-to-br from-secondary/30 via-background to-accent/5 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4">
+            <MessageSquare className="w-12 h-12 text-accent mx-auto mb-2" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Let's Connect
+          </h2>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-accent to-primary mx-auto mb-6 rounded-full"></div>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Have a project in mind or want to collaborate? I'd love to hear from you!
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="space-y-6">
-          <div className="text-center mb-12">
-            <div>
-              <h3 className="font-heading font-bold text-2xl mb-4">
-                Let's work together
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Left Side - Contact Form */}
+          <Card className="p-8 shadow-2xl border-2 hover:shadow-accent/10 transition-all duration-300">
+            <div className="mb-6">
+              <h3 className="font-heading font-bold text-2xl mb-2">
+                Send me a message
               </h3>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-muted-foreground">
+                Fill out the form below and I'll get back to you as soon as possible.
+              </p>
+            </div>
+            
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              {/* Hidden field for Netlify Forms */}
+              <input type="hidden" name="form-name" value="contact" />
+              
+              {/* Honeypot field for spam protection */}
+              <div className="hidden">
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-base font-semibold">
+                  Your Name
+                </Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="h-12 border-2 focus:border-accent transition-colors"
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-base font-semibold">
+                  Email Address
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="h-12 border-2 focus:border-accent transition-colors"
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-base font-semibold">
+                  Your Message
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell me about your project..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="min-h-[150px] border-2 focus:border-accent transition-colors resize-none"
+                  required
+                />
+              </div>
+              
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold h-12 text-base"
+              >
+                <Send className="w-5 h-5 mr-2" />
+                Send Message
+              </Button>
+            </form>
+          </Card>
+
+          {/* Right Side - Contact Info */}
+          <div className="space-y-6">
+            <Card className="p-8 bg-gradient-to-br from-accent/10 to-primary/5 border-2 border-accent/20">
+              <h3 className="font-heading font-bold text-2xl mb-3">
+                Let's Work Together
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
                 I'm always interested in hearing about new projects and opportunities. 
                 Whether you have a question or just want to say hi, I'll do my best to get back to you!
               </p>
-            </div>
-          </div>
+            </Card>
+
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="p-4 hover:shadow-md transition-all">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-accent/10 rounded-lg">
-                      <info.icon className="w-5 h-5 text-accent" />
+                <Card 
+                  key={index} 
+                  className="p-5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-gradient-to-br from-accent/20 to-primary/10 rounded-xl group-hover:scale-110 transition-transform">
+                      <info.icon className="w-6 h-6 text-accent" />
                     </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{info.label}</p>
+                    <div className="flex-1">
+                      <p className="text-sm text-muted-foreground font-medium mb-1">
+                        {info.label}
+                      </p>
                       {info.link ? (
                         <a
                           href={info.link}
-                          className="font-medium text-primary hover:text-accent transition-colors"
+                          className="font-semibold text-primary hover:text-accent transition-colors text-base"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="font-medium">{info.value}</p>
+                        <p className="font-semibold text-base">{info.value}</p>
                       )}
                     </div>
                   </div>
@@ -102,17 +203,28 @@ const Contact = () => {
               ))}
             </div>
 
-            <div className="pt-4">
+            <Card className="p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/20">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-primary/20 rounded-full">
+                  <Phone className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-heading font-bold text-lg">Quick Response</h4>
+                  <p className="text-sm text-muted-foreground">Usually within 24 hours</p>
+                </div>
+              </div>
               <Button
                 size="lg"
-                className="w-full bg-primary hover:bg-primary/90"
+                variant="outline"
+                className="w-full border-2 border-primary hover:bg-primary hover:text-white font-semibold h-12"
                 asChild
               >
-                <a href="/cv.pdf" download>
-                  Download CV
+                <a href="mailto:hamza.lekhbioui@gmail.com">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Email Me Directly
                 </a>
               </Button>
-            </div>
+            </Card>
           </div>
         </div>
       </div>

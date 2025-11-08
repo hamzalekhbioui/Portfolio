@@ -1,6 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+
 
 const Certifications = () => {
   const certifications = [
@@ -10,6 +13,7 @@ const Certifications = () => {
       date: "2023",
       skills: ["Python", "Data Structures", "Web Scraping",],
       verified: true,
+      certificateFile: "/assets/python.pdf", 
     },
     {
       title: "Effective Leadership",
@@ -17,6 +21,7 @@ const Certifications = () => {
       date: "2024",
       skills: ["Leadership", "Teamwork", "Communication", "Adaptability"],
       verified: true,
+      certificateFile: "/assets/effective_leadership.pdf", 
     },
     {
       title: "Project Management Foundations: Teams",
@@ -24,6 +29,15 @@ const Certifications = () => {
       date: "2024",
       skills: ["Project Management", "Teamwork", "Communication", "Adaptability"],
       verified: true,
+      certificateFile: "/assets/project_mang.pdf", 
+    },
+    {
+      title: "Gemini Certified Educator",
+      provider: "Google",
+      date: "2025",
+      skills: ["Artificial Intelligence", "Google AI Tools", "EdTech & Assessment"],
+      verified: true,
+      certificateFile: "/assets/eminicertifiededucator.pdf", 
     },
   ];
 
@@ -44,7 +58,7 @@ const Certifications = () => {
           {certifications.map((cert, index) => (
             <Card
               key={index}
-              className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 border-2"
+              className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 border-2 relative group"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="p-2 bg-accent/10 rounded-lg">
@@ -73,6 +87,22 @@ const Certifications = () => {
                   </Badge>
                 ))}
               </div>
+              {cert.certificateFile && (
+                <a
+                  href={cert.certificateFile}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-2 w-full"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    View Certificate
+                  </Button>
+                </a>
+              )}
             </Card>
           ))}
         </div>
