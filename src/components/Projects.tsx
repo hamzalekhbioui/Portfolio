@@ -38,6 +38,13 @@ const Projects = () => {
       technologies: ["Python", "YED", "C", "XML Parsing", "GUI"],
       github: "https://github.com/hamzalekhbioui",
     },
+    {
+      title: "Web API Interaction Tool for Scientific Articles",
+      description:
+        "Python script that utilizes the Crossref REST API to retrieve detailed metadata about scientific articles based on user input (title, author name, or DOI). The tool handles multiple search results and extracts key bibliographic information such as title, volume, URL, DOI, article number, pages, journal, publisher, author list, publication year, and BibTeX key.",
+      technologies: ["Python", "Crossref", "REST API", "JSON Parsing", "CLI"],
+      github: "https://github.com/hamzalekhbioui",
+    },
   ];
 
   return (

@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,17 +34,13 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-card/95 backdrop-blur-md shadow-md" : "bg-transparent"} animate-fade-in`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => scrollToSection("home")}
-            className="text-xl font-heading font-bold text-primary hover:text-accent transition-colors"
+            className="text-xl font-heading font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent transition-transform duration-300 hover:scale-105"
           >
             HL
           </button>
@@ -52,21 +51,60 @@ const Navigation = () => {
                 key={link.id}
                 variant="ghost"
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm font-medium hover:text-accent transition-colors"
+                className="text-sm font-medium hover:text-accent transition-colors rounded-full px-3 py-2"
               >
                 {link.label}
               </Button>
             ))}
           </div>
 
-          <Button
-            variant="default"
-            size="sm"
-            className="bg-accent text-accent-foreground hover:bg-accent/90"
-            asChild
-          >
-            <a href="#contact">Let's Talk</a>
-          </Button>
+          <div className="flex items-center gap-2">
+            <div className="md:hidden">
+              <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Menu className="w-5 h-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-64">
+                  <div className="mt-6 space-y-2">
+                    {navLinks.map((link) => (
+                      <Button
+                        key={link.id}
+                        variant="ghost"
+                        className="w-full justify-start text-base hover:text-accent"
+                        onClick={() => {
+                          setMenuOpen(false);
+                          scrollToSection(link.id);
+                        }}
+                      >
+                        {link.label}
+                      </Button>
+                    ))}
+                    <Button
+                      variant="default"
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 mt-2"
+                      onClick={() => {
+                        setMenuOpen(false);
+                        scrollToSection("contact");
+                      }}
+                    >
+                      Let's Talk
+                    </Button>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+
+            <Button
+              variant="default"
+              size="sm"
+              className="hidden md:inline-flex bg-accent text-accent-foreground hover:bg-accent/90"
+              asChild
+            >
+              <a href="#contact">Let's Talk</a>
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
