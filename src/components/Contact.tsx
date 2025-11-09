@@ -113,10 +113,11 @@ const Contact = () => {
             </div>
             
             <form
-              onSubmit={handleSubmit} 
+              //onSubmit={handleSubmit} 
               className="space-y-6"
               name="contact"
               method="POST"
+              action="/success"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
             >
