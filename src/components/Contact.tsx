@@ -85,7 +85,7 @@ const Contact = () => {
               </p>
             </div>
             
-            <form 
+            <form
               onSubmit={handleSubmit} 
               className="space-y-6"
               name="contact"
@@ -203,28 +203,7 @@ const Contact = () => {
               ))}
             </div>
 
-            <Card className="p-6 bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/20">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-primary/20 rounded-full">
-                  <Phone className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-heading font-bold text-lg">Quick Response</h4>
-                  <p className="text-sm text-muted-foreground">Usually within 24 hours</p>
-                </div>
-              </div>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-2 border-primary hover:bg-primary hover:text-white font-semibold h-12"
-                asChild
-              >
-                <a href="mailto:hamza.lekhbioui@gmail.com">
-                  <Mail className="w-5 h-5 mr-2" />
-                  Email Me Directly
-                </a>
-              </Button>
-            </Card>
+            
           </div>
         </div>
       </div>

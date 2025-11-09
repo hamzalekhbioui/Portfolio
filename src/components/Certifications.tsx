@@ -39,6 +39,14 @@ const Certifications = () => {
       verified: true,
       certificateFile: "/assets/eminicertifiededucator.pdf", 
     },
+    {
+      title: "Agile Explorer Certification",
+      provider: "IBM",
+      date: "2025",
+      skills: ["Agile management", "Agile leadership", "Kanban principles", "Iterative design", "User stories", "Collaboration"],
+      verified: true,
+      certificateFile: "/assets/agile.pdf", 
+    },
   ];
 
   return (
