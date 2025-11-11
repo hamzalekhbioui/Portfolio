@@ -1,4 +1,3 @@
-import { Card } from "@/components/ui/card";
 import { Code2, Users, Lightbulb, Target } from "lucide-react";
 
 const About = () => {
@@ -7,21 +6,37 @@ const About = () => {
       icon: Code2,
       title: "Clean Code",
       description: "Writing maintainable, scalable solutions",
+      backTitle: "My Approach",
+      backContent: "I believe in writing code that's not just functional, but elegant and easy to maintain for future developers.",
+      frontColor: "#6A2C70",
+      backColor: "#F08A5D",
     },
     {
       icon: Users,
       title: "Teamwork",
       description: "Collaborative and adaptable approach",
+      backTitle: "Team Player",
+      backContent: "Experienced in leading teams and mentoring students, I value open communication and shared success.",
+      frontColor: "#2C3E50",
+      backColor: "#3498DB",
     },
     {
       icon: Lightbulb,
       title: "Innovation",
       description: "Passionate about AI and technology",
+      backTitle: "Tech Enthusiast",
+      backContent: "From AI assistants to state machines, I love exploring cutting-edge technologies and their real-world applications.",
+      frontColor: "#16A085",
+      backColor: "#F39C12",
     },
     {
       icon: Target,
       title: "Problem Solver",
       description: "Creative solutions to complex challenges",
+      backTitle: "Solution Oriented",
+      backContent: "Every challenge is an opportunity to learn. I combine analytical thinking with creativity to deliver results.",
+      frontColor: "#8E44AD",
+      backColor: "#E74C3C",
     },
   ];
 
@@ -52,24 +67,79 @@ const About = () => {
             </p>
           </div>
 
+          {/* 3D Flip Cards Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.map((item, index) => (
-              <Card
-                key={index}
-                className="p-6 text-center hover:shadow-lg transition-all hover:-translate-y-1 border-2"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 rounded-full mb-4">
-                  <item.icon className="w-8 h-8 text-accent" />
+            {highlights.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="flip-card w-full h-[240px]"
+                  style={{
+                    perspective: '1000px',
+                  }}
+                >
+                  {/* Card Inner Container */}
+                  <div className="flip-card-inner w-full h-full relative">
+                    
+                    {/* Front Side */}
+                    <div 
+                      className="flip-card-front absolute w-full h-full flex flex-col items-center justify-center text-center p-6 rounded-xl border-[10px] backface-hidden"
+                      style={{
+                        backgroundColor: item.frontColor,
+                        borderColor: item.frontColor,
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(0deg)',
+                      }}
+                    >
+                      <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4">
+                        <Icon className="w-8 h-8 text-white" strokeWidth={2} />
+                      </div>
+                      <h3 className="font-heading font-bold text-xl mb-2 text-white">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-white/90">{item.description}</p>
+                    </div>
+
+                    {/* Back Side */}
+                    <div 
+                      className="flip-card-back absolute w-full h-full flex flex-col items-center justify-center text-center p-6 rounded-xl border-[10px] backface-hidden"
+                      style={{
+                        backgroundColor: item.backColor,
+                        borderColor: item.backColor,
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                      }}
+                    >
+                      <h3 className="font-heading font-bold text-2xl mb-3 text-white">
+                        {item.backTitle}
+                      </h3>
+                      <p className="text-sm text-white leading-relaxed">
+                        {item.backContent}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-heading font-semibold text-lg mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
-              </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
+
+      {/* CSS for 3D Flip Card Animation */}
+      <style>{`
+        .flip-card-inner {
+          transform-style: preserve-3d;
+          transition: transform 0.6s ease-in-out;
+        }
+        .flip-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+        .backface-hidden {
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+      `}</style>
     </section>
   );
 };
