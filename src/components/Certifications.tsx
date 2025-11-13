@@ -50,6 +50,38 @@ const Certifications = () => {
       verified: true,
       certificateFile: "/assets/agile.pdf", 
     },
+    {
+      title: "Math Foundation for ML",
+      provider: "365 Data Science",
+      date: "2025",
+      skills: ["Math Foundation", "Machine Learning", "Specialized Knowledge"],
+      verified: true,
+      certificateFile: "/assets/math.pdf", 
+    },
+    {
+      title: "Web Scraping and API Fundamentals in Python",
+      provider: "365 Data Science",
+      date: "2025",
+      skills: ["Web Scraping", "API Fundamentals", "Python", "Information Technology"],
+      verified: true,
+      certificateFile: "/assets/web.pdf", 
+    },
+    {
+      title: "Git and GitHub",
+      provider: "365 Data Science",
+      date: "2025",
+      skills: ["Git", "GitHub", "Version Control", "Collaboration", "Information Technology"],
+      verified: true,
+      certificateFile: "/assets/git.pdf", 
+    },
+    {
+      title: "Advanced SQL for Data Engineering",
+      provider: "365 Data Science",
+      date: "2025",
+      skills: ["Advanced SQL", "Data Engineering", "Troubleshooting", "Information Technology"],
+      verified: true,
+      certificateFile: "/assets/sql.pdf", 
+    },
   ];
 
   return (
