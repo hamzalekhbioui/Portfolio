@@ -13,8 +13,8 @@ exports.handler = async function(event, context) {
     // Get the key from Netlify Environment Variables
     const apiKey = process.env.GEMINI_API_KEY;
     
-    // API Endpoint for Gemini 1.5 Flash
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // API Endpoint for the stable Gemini Pro model
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
     // Prepare the payload for Gemini
     const systemInstruction = {
