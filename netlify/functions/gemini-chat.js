@@ -41,6 +41,17 @@ exports.handler = async function(event, context) {
 
     const data = await response.json();
 
+    // --- START OF NEW CODE ---
+    // Add detailed logging to see what Google's API is returning
+    console.log("Gemini API Response:", JSON.stringify(data, null, 2));
+
+    // Check if the API returned a valid response with candidates
+    if (!data.candidates || data.candidates.length === 0) {
+      console.error("Error from Gemini API: No candidates found in response.", data.error || "");
+      throw new Error("Failed to get a valid response from Gemini API.");
+    }
+    // --- END OF NEW CODE ---
+
     // Extract the text reply
     const reply = data.candidates[0].content.parts[0].text;
 
